@@ -7,3 +7,28 @@ FROM web_events AS we
 JOIN accounts AS a
 ON we.account_id = a.id
 WHERE a.name = 'Walmart';
+
+parch_and_posey=# SELECT r.name region, a.name account,
+parch_and_posey-#        o.total_amt_usd/(o.total + 0.01) unit_price
+parch_and_posey-# FROM region r
+parch_and_posey-# JOIN sales_reps s
+parch_and_posey-# ON s.region_id = r.id
+parch_and_posey-# JOIN accounts a
+parch_and_posey-# ON a.sales_rep_id = s.id
+parch_and_posey-# JOIN orders o
+parch_and_posey-# ON o.account_id = a.id;
+
+parch_and_posey=# SELECT r.name,sr.name,a.name
+parch_and_posey-# FROM region AS r
+parch_and_posey-# JOIN sales_reps AS sr
+parch_and_posey-# ON r.id = sr.region_id
+parch_and_posey-# JOIN accounts AS a
+parch_and_posey-# ON sr.id = a.sales_rep_id
+parch_and_posey-# ORDER BY a.name ASC;
+
+parch_and_posey=# SELECT r.name,sr.name,a.name
+parch_and_posey-# FROM region AS r
+parch_and_posey-# JOIN sales_reps AS sr
+parch_and_posey-# ON r.id = sr.region_id
+parch_and_posey-# JOIN accounts AS a
+parch_and_posey-# ON sr.id = a.sales_rep_id;
