@@ -32,3 +32,31 @@ parch_and_posey-# JOIN sales_reps AS sr
 parch_and_posey-# ON r.id = sr.region_id
 parch_and_posey-# JOIN accounts AS a
 parch_and_posey-# ON sr.id = a.sales_rep_id;
+
+
+
+
+What is the total amount each customer spent at the restaurant?
+SELECT SUM (price) 
+FROM menu;
+#37
+
+How many days has each customer visited the restaurant?
+SELECT COUNT (order_date)
+FROM sales;
+## 15 days 
+
+What was the first item from the menu purchased by each customer?
+SELECT DISTINCT customer_id,product_name
+FROM sales 
+INNER JOIN menu 
+ON sales.product_id=menu.product_id
+ORDER BY customer_id ASC;
+
+What is the most purchased item on the menu and how many times was it purchased by all customers?
+SELECT product_name AS most_purchased, COUNT(sales.order_date) AS no_of_times
+FROM Sales
+FULL JOIN menu
+ON sales.product_id = menu.product_id
+GROUP BY menu.product_name
+ORDER BY no_of_times DESC;
